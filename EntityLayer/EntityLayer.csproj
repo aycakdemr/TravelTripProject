@@ -50,6 +50,7 @@
     <Compile Include="Concrete\Comment.cs" />
     <Compile Include="Concrete\Contact.cs" />
     <Compile Include="Concrete\HomePage.cs" />
+    <Compile Include="Dto\BlogCommentDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

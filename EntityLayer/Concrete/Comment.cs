@@ -13,6 +13,7 @@ namespace EntityLayer.Concrete
         public string UserName { get; set; }
         public string Email { get; set; }
         public string Comments { get; set; }
-        public Blog Blog { get; set; }
+        public int BlogId { get; set; }
+        public virtual Blog Blog { get; set; }
     }
 }

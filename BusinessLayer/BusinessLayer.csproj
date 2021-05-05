@@ -41,11 +41,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ICommentService.cs" />
+    <Compile Include="Abstract\IAboutService.cs" />
+    <Compile Include="Abstract\IAddressService.cs" />
+    <Compile Include="Abstract\IAdminService.cs" />
+    <Compile Include="Abstract\IBlogService.cs" />
+    <Compile Include="Abstract\IContactService.cs" />
+    <Compile Include="Abstract\IHomePageService.cs" />
+    <Compile Include="Concrete\AboutManager.cs" />
+    <Compile Include="Concrete\AddressManager.cs" />
+    <Compile Include="Concrete\AdminManager.cs" />
+    <Compile Include="Concrete\BlogManager.cs" />
+    <Compile Include="Concrete\CommentManager.cs" />
+    <Compile Include="Concrete\ContactManager.cs" />
+    <Compile Include="Concrete\HomePageManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Abstract\" />
-    <Folder Include="Concrete\" />
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{c77e4eaa-daaf-411a-be5e-ca2ac887ef21}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityLayer\EntityLayer.csproj">
+      <Project>{f79022d5-9c3b-49ee-b52d-8ae1b23850e4}</Project>
+      <Name>EntityLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
