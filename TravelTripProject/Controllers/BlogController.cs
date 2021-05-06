@@ -18,7 +18,8 @@ namespace TravelTripProject.Controllers
         public ActionResult Index()
         {
             dto.Deger1 = blogManager.GetAll();
-           // var value = blogManager.GetAll();
+            dto.Deger3 = blogManager.GetAll().OrderByDescending(x => x.Id).Take(5).ToList();
+            // var value = blogManager.GetAll();
             return View(dto);
         }
       

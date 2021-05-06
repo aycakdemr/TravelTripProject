@@ -23,7 +23,22 @@ namespace TravelTripProject.Controllers
         }
         public PartialViewResult Partial1()
         {
-            var value = blogManager.GetAll();
+            var value = blogManager.GetAll().OrderByDescending(x => x.Id).Take(3).ToList();
+            return PartialView(value);
+        }
+        public PartialViewResult Partial2()
+        {
+            var value = blogManager.GetAll().OrderByDescending(x => x.Id).Take(10).ToList(); ;
+            return PartialView(value);
+        }
+        public PartialViewResult Partial3()
+        {
+            var value = blogManager.GetAll().OrderByDescending(x => x.Id).Take(3).ToList(); ;
+            return PartialView(value);
+        }
+        public PartialViewResult Partial4()
+        {
+            var value = blogManager.GetAll().Take(3).ToList(); ;
             return PartialView(value);
         }
     }
