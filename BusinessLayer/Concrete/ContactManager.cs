@@ -23,9 +23,10 @@ namespace BusinessLayer.Concrete
             _contactDal.Insert(contact);
         }
 
-        public void Delete(Contact contact)
+        public void Delete(int id)
         {
-            _contactDal.Delete(contact);
+            var value = _contactDal.Get(x => x.Id == id);
+            _contactDal.Delete(value);
         }
 
         public List<Contact> GetAll()

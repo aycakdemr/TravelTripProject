@@ -22,9 +22,10 @@ namespace BusinessLayer.Concrete
             _addressDal.Insert(address);
         }
 
-        public void Delete(Address address)
+        public void Delete(int id)
         {
-            _addressDal.Delete(address);
+            var value = _addressDal.Get(x => x.Id == id);
+            _addressDal.Delete(value);
         }
 
         public List<Address> GetAll()

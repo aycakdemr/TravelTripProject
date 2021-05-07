@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.EntityFramework
 {
-    public class EfBlogDal : GenericRepository<Blog>, IBlogDal
+    public class EfBlogDal : GenericRepository<Blog,Context>, IBlogDal
     {
        
     }

@@ -10,7 +10,7 @@ namespace BusinessLayer.Abstract
     public interface IAddressService
     {
         void Add(Address address);
-        void Delete(Address address);
+        void Delete(int id);
         void Update(Address address);
         List<Address> GetAll();
     }

@@ -1,0 +1,15 @@
+﻿@model EntityLayer.Concrete.Comment
+
+<div class="content-form">
+        <h3>Yorum Yapın</h3>
+
+        <form method="post">
+
+
+            <input type="text" placeholder="Id" name="BlogId" value="@ViewBag.deger" required />
+            <input type="text" placeholder="İsim" name="UserName" required />
+            <input type="text" placeholder="Email" name="Email" required />
+            <textarea placeholder="Yorum" name="Comments"></textarea>
+            <input type="submit" value="GÖNDER" />
+        </form>
+    </div>

@@ -23,9 +23,10 @@ namespace BusinessLayer.Concrete
             _commentDal.Insert(comment);
         }
 
-        public void Delete(Comment comment)
+        public void Delete(int id)
         {
-            _commentDal.Delete(comment);
+            var value = _commentDal.Get(x => x.Id == id);
+            _commentDal.Delete(value);
         }
 
         public List<Comment> GetAll()
@@ -41,6 +42,10 @@ namespace BusinessLayer.Concrete
         public void Update(Comment comment)
         {
             _commentDal.Update(comment);
+        }
+        public Comment GetComment(int id)
+        {
+            return _commentDal.Get(x => x.Id == id);
         }
     }
 }

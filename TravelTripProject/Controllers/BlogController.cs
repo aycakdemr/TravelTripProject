@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using EntityLayer.Dto;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,21 @@ namespace TravelTripProject.Controllers
             dto.Deger2 = commentManager.GetById(id);
           //  var value = blogManager.GetCommentByBlogId(id);
             return View(dto);
+        }
+     
+        [HttpGet]
+        public PartialViewResult ToComment(int id)
+        {
+            ViewBag.deger = id;
+            return PartialView();
+        }
+        [HttpPost]
+        public PartialViewResult ToComment(Comment comment)
+        {
+            commentManager.Add(comment);
+            Response.Redirect("/Blog/Index/");
+            return PartialView();
+
         }
 
     }

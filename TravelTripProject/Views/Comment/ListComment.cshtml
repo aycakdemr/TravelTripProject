@@ -1,0 +1,33 @@
+﻿@using EntityLayer.Concrete
+@model List<Comment>
+@{
+    ViewBag.Title = "ListComment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yorum Listesi</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Kullanıcı</th>
+        <th>Mail</th>
+        <th>Yorum</th>
+        <th>Blog</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.Id</th>
+            <th>@item.UserName</th>
+            <th>@item.Email</th>
+            <th>@item.Comments</th>
+            <th>@item.BlogId</th>
+            <th><a href="/Comment/DeleteComment/@item.Id" class="btn btn-danger">Sil</a></th>
+            <th><a href="/Comment/GetComment/@item.Id" class="btn btn-warning">Güncelle</a></th>
+        </tr>
+    }
+
+</table>

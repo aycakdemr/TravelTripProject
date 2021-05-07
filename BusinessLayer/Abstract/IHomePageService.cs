@@ -10,7 +10,7 @@ namespace BusinessLayer.Abstract
     public interface IHomePageService
     {
         void Add(HomePage homePage);
-        void Delete(HomePage homePage);
+        void Delete(int id);
         void Update(HomePage homePage);
         List<HomePage> GetAll();
     }

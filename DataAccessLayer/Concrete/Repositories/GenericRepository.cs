@@ -1,48 +1,83 @@
-﻿using DataAccessLayer.Abstract;
+﻿
+using DataAccessLayer.Abstract;
+using EntityLayer.Abstract;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DataAccessLayer.Concrete.Repositories
 {
-    public class GenericRepository<T> : IRepository<T> where T : class
+    public class GenericRepository<TEntity, TContext> : IRepository<TEntity>
+        where TEntity : class, IEntity, new()
+        where TContext : DbContext, new()
     {
-        Context c = new Context();
-        DbSet<T> _object;
-
-        public GenericRepository()
+        public void Insert(TEntity entity)
         {
-            _object = c.Set<T>();
-        }
-        public void Delete(T t)
-        {
-            _object.Remove(t);
-            c.SaveChanges();
+            using (Context context = new Context())
+            {
+                var addedEntity = context.Entry(entity);
+                addedEntity.State = EntityState.Added;
+                context.SaveChanges();
+            }
         }
 
-        public void Insert(T t)
+        public void Delete(TEntity entity)
         {
-            _object.Add(t);
-            c.SaveChanges();
+            using (Context context = new Context())
+            {
+                var deletedEntity = context.Entry(entity);
+                deletedEntity.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
         }
 
-        public List<T> List()
+        public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
-            return _object.ToList();
+            using (Context context = new Context())
+            {
+                return context.Set<TEntity>().FirstOrDefault(filter);
+            }
         }
 
-        public List<T> List(Expression<Func<T, bool>> filter)
+        public List<TEntity> List(Expression<Func<TEntity, bool>> filter = null)
         {
-            return _object.Where(filter).ToList();
+            using (Context context = new Context())
+            {
+                return filter == null
+                                 ? context.Set<TEntity>().ToList()
+                                 : context.Set<TEntity>().Where(filter).ToList();
+            }
         }
 
-        public void Update(T t)
+        public void Update(TEntity entity)
         {
-            c.SaveChanges();
+            using (Context context = new Context())
+            {
+                var updatedEntity = context.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
+                context.SaveChanges();
+            }
         }
+
+        public Boolean Auth(Admin admin)
+        {
+            using (Context context = new Context())
+            {
+                var info = context.Admins.FirstOrDefault(x => x.User == admin.User
+                && x.Password == admin.Password);
+                if (info!=null)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            
+        }
+
     }
 }

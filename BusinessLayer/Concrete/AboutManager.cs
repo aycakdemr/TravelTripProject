@@ -23,9 +23,10 @@ namespace BusinessLayer.Concrete
             _aboutDal.Insert(about);
         }
 
-        public void Delete(About about)
+        public void Delete(int id)
         {
-            _aboutDal.Delete(about);
+            var value = _aboutDal.Get(x => x.Id == id);
+            _aboutDal.Delete(value);
         }
 
         public List<About> GetAll()

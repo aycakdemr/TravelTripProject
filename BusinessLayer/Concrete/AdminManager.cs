@@ -23,9 +23,19 @@ namespace BusinessLayer.Concrete
             _adminDal.Insert(admin);
         }
 
-        public void Delete(Admin admin)
+        public bool Auth(Admin admin)
         {
-            _adminDal.Delete(admin);
+           if(_adminDal.Auth(admin))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void Delete(int id)
+        {
+            var value = _adminDal.Get(x => x.Id == id);
+            _adminDal.Delete(value);
         }
 
         public List<Admin> GetAll()

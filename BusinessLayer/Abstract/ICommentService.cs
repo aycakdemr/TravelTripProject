@@ -10,9 +10,10 @@ namespace BusinessLayer.Abstract
     public interface ICommentService
     {
         void Add(Comment comment);
-        void Delete(Comment comment);
+        void Delete(int id);
         void Update(Comment comment);
         List<Comment> GetAll();
         List<Comment> GetById(int id);
+        Comment GetComment(int id);
     }
 }

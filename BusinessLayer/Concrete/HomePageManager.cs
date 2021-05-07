@@ -23,9 +23,10 @@ namespace BusinessLayer.Concrete
             _homePageDal.Insert(homePage);
         }
 
-        public void Delete(HomePage homePage)
+        public void Delete(int id)
         {
-            _homePageDal.Delete(homePage);
+            var value = _homePageDal.Get(x => x.Id == id);
+            _homePageDal.Delete(value);
         }
 
         public List<HomePage> GetAll()
